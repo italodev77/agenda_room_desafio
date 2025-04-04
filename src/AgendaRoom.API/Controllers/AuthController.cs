@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using AgendaRoom.API.DTOs;
 using AgendaRoom.Config;
 using AgendaRoom.Domain.Entities;
 
@@ -31,31 +32,31 @@ namespace AgendaRoom.Controllers
 
             var user = new User
             {
-                name = model.Nome,
+                name = model.Name,
                 email = model.Email
             };
 
             
-            user.hashPassword = _passwordHasher.HashPassword(user, model.Senha);
+            user.hashPassword = _passwordHasher.HashPassword(user, model.Password);
 
-            _context.Usuarios.Add(user);
+            _context.User.Add(user);
             await _context.SaveChangesAsync();
 
             
-            var usuarioSalvo = await _context.Usuarios.FirstOrDefaultAsync(u => u.email == model.Email);
+            var newUser = await _context.User.FirstOrDefaultAsync(u => u.email == model.Email);
             
 
-            return CreatedAtAction(nameof(Register), new { email = usuario.email }, "Usuário registrado com sucesso!");
+            return CreatedAtAction(nameof(Register), new { email = newUser.email }, "Usuário registrado com sucesso!");
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.email == model.Email);
+            var user = await _context.User.FirstOrDefaultAsync(u => u.email == model.Email);
             
-            var resultado = _passwordHasher.VerifyHashedPassword(usuario, usuario.senhaHash, model.Senha);
+            var result = _passwordHasher.VerifyHashedPassword(user, user.hashPassword, model.Password);
             
-            var token = TokenService.GenerateToken(usuario);
+            var token = TokenService.GenerateToken(user);
             return Ok(new { token });
         }
     }

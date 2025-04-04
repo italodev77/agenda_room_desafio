@@ -34,7 +34,7 @@ public class RoomsController: ControllerBase
     }
 
     [HttpPost("create-room")]
-    public async Task<IActionResult> CreateSala([FromBody] CreateRoomDTO model)
+    public async Task<IActionResult> CreateRoom([FromBody] CreateRoomDTO model)
     {
         var room = new Room()
         {
@@ -62,11 +62,11 @@ public class RoomsController: ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteSala(int id)
     {
-        var sala = await _roomDal.GetSalasById(id);
-        if (sala == null)
+        var room = await _roomDal.GetRoomById(id);
+        if (room == null)
             return NotFound("Sala não encontrado.");
 
-        await _roomDal.DeleteSala(id);
+        await _roomDal.DeleteRoom(id);
         return Ok("Sala excluída com sucesso.");
     }
 

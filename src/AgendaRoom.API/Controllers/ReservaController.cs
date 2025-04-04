@@ -13,24 +13,24 @@ namespace AgendaRoom.Controllers
     [ApiController]
     public class ReservasController : ControllerBase
     {
-        private readonly ReservaDAL _reservaDAL;
+        private readonly ReservationDAL _reservationDal;
 
-        public ReservasController(ReservaDAL reservaDAL)
+        public ReservasController(ReservationDAL reservationDal)
         {
-            _reservaDAL = reservaDAL;
+            _reservationDal = reservationDal;
         }
         
         [HttpGet("listar")]
         public async Task<IActionResult> GetAllReservas()
         {
-            var reservas = await _reservaDAL.GetAllReservas();
+            var reservas = await _reservationDal.GetAllReservas();
             return Ok(reservas);
         }
         
         [HttpGet("buscar")]
         public async Task<IActionResult> BuscarReservas([FromQuery] int? usuarioId, [FromQuery] int? salaId, [FromQuery] DateTime? dataReserva, [FromQuery] StatusReserva? status)
         {
-            var reservas = await _reservaDAL.BuscarReservas(usuarioId, salaId, dataReserva, status);
+            var reservas = await _reservationDal.BuscarReservas(usuarioId, salaId, dataReserva, status);
             return Ok(reservas);
         }
 
@@ -47,7 +47,7 @@ namespace AgendaRoom.Controllers
                 Status = StatusReserva.Ativa
             };
 
-            var resultado = await _reservaDAL.CriarReserva(reserva);
+            var resultado = await _reservationDal.CriarReserva(reserva);
 
             if (resultado.StartsWith("Erro"))
                 return BadRequest(resultado);
@@ -58,7 +58,7 @@ namespace AgendaRoom.Controllers
         [HttpPut("cancelar")]
         public async Task<IActionResult> CancelarReserva([FromBody] CancelReservation model)
         {
-            bool sucesso = await _reservaDAL.CancelarReserva(model.ReservaId);
+            bool sucesso = await _reservationDal.CancelarReserva(model.ReservaId);
 
             if (!sucesso)
                 return BadRequest("Erro: Reserva não encontrada ou já cancelada.");
