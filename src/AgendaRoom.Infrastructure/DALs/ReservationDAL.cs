@@ -18,12 +18,12 @@ namespace AgendaRoom.Infrastructure.DALs
             _dbContext = dbContext;
         }
 
-        public async Task<List<Reservation>> GetAllReservas()
+        public async Task<List<Reservation>> GetAllReservations()
         {
             return await _dbContext.Reservations.ToListAsync();
         }
 
-        public async Task<List<Reservation>> BuscarReservas(int? UserId, int? RoomId, DateTime? ReservationDate, ReservationStatus? status)
+        public async Task<List<Reservation>> GetReservationsByParams(int? UserId, int? RoomId, DateTime? ReservationDate, ReservationStatus? status)
         {
             var query = _dbContext.Reservations.AsQueryable();
 

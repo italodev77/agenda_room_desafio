@@ -20,6 +20,9 @@ builder.Services.AddScoped<RoomDal>();
 builder.Services.AddScoped<ReservationDAL>();
 builder.Services.AddScoped<TokenService>();
 
+builder.Services.AddSingleton<TokenService>();
+
+
 
 // Registre os controllers
 builder.Services.AddControllers();
