@@ -121,8 +121,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.API/AgendaRoom.API.csproj": {
+                "projectPath": "/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.API/AgendaRoom.API.csproj"
+              },
               "/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/AgendaRoom.Domain.csproj": {
                 "projectPath": "/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/AgendaRoom.Domain.csproj"
+              },
+              "/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Infrastructure/AgendaRoom.Infrastructure.csproj": {
+                "projectPath": "/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Infrastructure/AgendaRoom.Infrastructure.csproj"
               }
             }
           }

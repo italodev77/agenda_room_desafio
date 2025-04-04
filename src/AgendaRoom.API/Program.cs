@@ -14,10 +14,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApiDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// Adicione seus serviços antes do Build()
+
 builder.Services.AddScoped<UserDAL>();
 builder.Services.AddScoped<RoomDal>();
 builder.Services.AddScoped<ReservationDAL>();
+
+
 builder.Services.AddScoped<TokenService>();
 
 builder.Services.AddSingleton<TokenService>();

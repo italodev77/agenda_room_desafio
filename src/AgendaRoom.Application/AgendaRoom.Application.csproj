@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AgendaRoom.Domain\AgendaRoom.Domain.csproj" />
     <ProjectReference Include="..\AgendaRoom.Infrastructure\AgendaRoom.Infrastructure.csproj" />
+    <ProjectReference Include="..\AgendaRoom.API\AgendaRoom.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

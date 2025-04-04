@@ -1365,7 +1365,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "AgendaRoom.API": "1.0.0",
           "AgendaRoom.Domain": "1.0.0",
+          "AgendaRoom.Infrastructure": "1.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1"
         },
         "compile": {
@@ -3863,5 +3865,16 @@
         "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.114/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1108",
+      "level": "Error",
+      "message": "Cycle detected. \n  AgendaRoom.API -> AgendaRoom.Application -> AgendaRoom.API.",
+      "libraryId": "AgendaRoom.API",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

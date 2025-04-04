@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgendaRoom.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a11aed47da643bf8b8ae3b7cac3ed11420b09d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d21a7c1a42387a871dcea1e7e66934184690fd56")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgendaRoom.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgendaRoom.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
