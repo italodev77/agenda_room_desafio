@@ -36,7 +36,7 @@ namespace AgendaRoom.Controllers
 
         
         [HttpPost("criar")]
-        public async Task<IActionResult> CriarReserva([FromBody] CriarReservaDTO model)
+        public async Task<IActionResult> CriarReserva([FromBody] CreateReservationDTO model)
         {
             var reserva = new Reservas
             {
@@ -56,7 +56,7 @@ namespace AgendaRoom.Controllers
         }
         
         [HttpPut("cancelar")]
-        public async Task<IActionResult> CancelarReserva([FromBody] CancelarReservaDTO model)
+        public async Task<IActionResult> CancelarReserva([FromBody] CancelReservation model)
         {
             bool sucesso = await _reservaDAL.CancelarReserva(model.ReservaId);
 

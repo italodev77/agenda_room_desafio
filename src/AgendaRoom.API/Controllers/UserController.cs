@@ -1,35 +1,36 @@
-using AgendaRoom.DTOs;
-using AgendaRoom.Entities;
 using AgendaRoom.DALs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
+using AgendaRoom.API.DTOs;
+using AgendaRoom.Domain.Entities;
+using AgendaRoom.Infrastructure.DALs;
 
-namespace AgendaRoom.Controllers
+namespace AgendaRoom.API.Controllers
 {
     [Route("api/usuarios")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UsuarioDAL _usuarioDal;
-        private readonly PasswordHasher<Usuarios> _passwordHasher;
+        private readonly UserDAL _userDal;
+        private readonly PasswordHasher<User> _passwordHasher;
 
-        public UserController(UsuarioDAL usuarioDal)
+        public UserController(UserDAL userDal)
         {
-            _usuarioDal = usuarioDal;
-            _passwordHasher = new PasswordHasher<Usuarios>();
+            _userDal = userDal;
+            _passwordHasher = new PasswordHasher<User>();
         }
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await _usuarioDal.GetAllUsers();
+            var users = await _userDal.GetAllUsers();
             return Ok(users);
         }
         
         [HttpGet("get-user/{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await _usuarioDal.GetUserById(id);
+            var user = await _userDal.GetUserById(id);
             if (user == null)
                 return NotFound("Usuário não encontrado.");
 
@@ -39,28 +40,28 @@ namespace AgendaRoom.Controllers
         [HttpPut("update-user/{id}")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateUserDTO model)
         {
-            var user = await _usuarioDal.GetUserById(id);
+            var user = await _userDal.GetUserById(id);
             if (user == null)
                 return NotFound("Usuário não encontrado.");
 
-            user.nome = model.Nome ?? user.nome;
+            user.name = model.Name ?? user.name;
             user.email = model.Email ?? user.email;
 
-            if (!string.IsNullOrEmpty(model.Senha))
-                user.senhaHash = _passwordHasher.HashPassword(user, model.Senha);
+            if (!string.IsNullOrEmpty(model.Password))
+                user.hashPassword = _passwordHasher.HashPassword(user, model.Password);
 
-            await _usuarioDal.UpdateUser(user);
+            await _userDal.UpdateUser(user);
             return Ok("Usuário atualizado com sucesso.");
         }
         
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _usuarioDal.GetUserById(id);
+            var user = await _userDal.GetUserById(id);
             if (user == null)
                 return NotFound("Usuário não encontrado.");
 
-            await _usuarioDal.DeleteUser(id);
+            await _userDal.DeleteUser(id);
             return Ok("Usuário excluído com sucesso.");
         }
     }

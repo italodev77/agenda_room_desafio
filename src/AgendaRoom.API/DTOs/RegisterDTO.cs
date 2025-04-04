@@ -2,22 +2,22 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AgendaRoom.DTOs;
+namespace AgendaRoom.API.DTOs;
 
 public class RegisterDTO
 {
     [Required]
-    public string Nome { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 
     [Required]
     [EmailAddress]
     public string Email { get; set; } = string.Empty;
 
     [Required]
-    public string Senha { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 
     
-    public string SenhaHash => ComputeHash(Senha);
+    public string HashPassword => ComputeHash(Password);
 
     private string ComputeHash(string password)
     {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using AgendaRoom.Config;
+using AgendaRoom.Domain.Entities;
 
 namespace AgendaRoom.Controllers
 {
@@ -14,30 +15,30 @@ namespace AgendaRoom.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ApiDbContext _context;
-        private readonly PasswordHasher<Usuarios> _passwordHasher;
+        private readonly PasswordHasher<User> _passwordHasher;
 
         public AuthController(ApiDbContext context)
         {
             _context = context;
-            _passwordHasher = new PasswordHasher<Usuarios>();
+            _passwordHasher = new PasswordHasher<User>();
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
-            if (await _context.Usuarios.AnyAsync(u => u.email == model.Email))
+            if (await _context.User.AnyAsync(u => u.email == model.Email))
                 return BadRequest("E-mail já está em uso.");
 
-            var usuario = new Usuarios
+            var user = new User
             {
-                nome = model.Nome,
+                name = model.Nome,
                 email = model.Email
             };
 
             
-            usuario.senhaHash = _passwordHasher.HashPassword(usuario, model.Senha);
+            user.hashPassword = _passwordHasher.HashPassword(user, model.Senha);
 
-            _context.Usuarios.Add(usuario);
+            _context.Usuarios.Add(user);
             await _context.SaveChangesAsync();
 
             
