@@ -6,17 +6,13 @@ namespace AgendaRoom.API.AutoMapper;
 
 public class Mapper: Profile
 {
-    public MappingProfile()
+    public Mapper()
     {
-        // Mapeamento de Reservation
+       
         CreateMap<Reservation, CancelReservationDTO>().ReverseMap();
         CreateMap<Reservation, CreateReservationDTO>().ReverseMap();
-
-        // Mapeamento de Salas
         CreateMap<Room, CreateRoomDTO>().ReverseMap();
-        CreateMap<Room, UpdateSalaDTO>().ReverseMap();
-
-        // Mapeamento de Usuários
+        CreateMap<Room, UpdateRoomDTO>().ReverseMap();
         CreateMap<User, RegisterDTO>().ReverseMap();
         CreateMap<User, LoginDTO>().ReverseMap();
         CreateMap<User, UpdateUserDTO>().ReverseMap();
