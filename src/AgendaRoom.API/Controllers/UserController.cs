@@ -8,7 +8,7 @@ using AgendaRoom.Infrastructure.DALs;
 
 namespace AgendaRoom.API.Controllers
 {
-    [Route("api/usuarios")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {

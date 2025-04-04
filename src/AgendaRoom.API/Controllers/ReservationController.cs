@@ -1,7 +1,7 @@
-using AgendaRoom.DALs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AgendaRoom.API.DTOs;
 using AgendaRoom.Domain.Entities;
@@ -12,6 +12,7 @@ namespace AgendaRoom.API.Controllers
 {
     [Route("api/reservation")]
     [ApiController]
+    [Authorize] 
     public class ReservationController : ControllerBase
     {
         private readonly ReservationDAL _reservationDal;
@@ -34,14 +35,24 @@ namespace AgendaRoom.API.Controllers
             var reservations = await _reservationDal.GetReservationsByParams(UserId, RoomId, ReservationDate, status);
             return Ok(reservations);
         }
-
         
         [HttpPost("create-reservation")]
         public async Task<IActionResult> CreateReservation([FromBody] CreateReservationDTO model)
         {
+            
+            var userIdClaim = User.FindFirst("UserId");
+            if (userIdClaim == null)
+            {
+                return Unauthorized("Usuário não autenticado ou sem o claim 'idusuario'.");
+            }
+            if (!int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return BadRequest("Id do usuário inválido no token.");
+            }
+            
             var reservation = new Reservation
             {
-                UserId = model.UserId,
+                UserId = userId,
                 RoomId = model.RoomId,
                 ReservationDate = model.ReservationDate,
                 ExpiryDate = model.ExpiryDate,

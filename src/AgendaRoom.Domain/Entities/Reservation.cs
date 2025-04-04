@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using AgendaRoom.Domain.Enums;
 
 namespace AgendaRoom.Domain.Entities;
@@ -14,6 +15,7 @@ public class Reservation
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
+        [JsonIgnore] 
         public User User { get; set; }
 
         [Required]
