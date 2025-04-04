@@ -4,7 +4,7 @@ using AgendaRoom.Domain.Enums;
 
 namespace AgendaRoom.Domain.Entities;
 
-[Table("TB_Reservas")]
+[Table("TB_Reservations")]
 public class Reservation
 {
         [Key]

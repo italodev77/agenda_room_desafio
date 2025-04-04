@@ -56,7 +56,8 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-var key = Encoding.ASCII.GetBytes(Key.Secret);
+var jwtSecret = builder.Configuration["Jwt:Secret"];
+var key = Encoding.ASCII.GetBytes(jwtSecret);
 
 builder.Services.AddAuthentication(x =>
 {

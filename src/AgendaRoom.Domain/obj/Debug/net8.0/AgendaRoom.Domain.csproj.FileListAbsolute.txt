@@ -1,0 +1,12 @@
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/bin/Debug/net8.0/AgendaRoom.Domain.deps.json
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/bin/Debug/net8.0/AgendaRoom.Domain.dll
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/bin/Debug/net8.0/AgendaRoom.Domain.pdb
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.AssemblyInfoInputs.cache
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.AssemblyInfo.cs
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.csproj.CoreCompileInputs.cache
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.sourcelink.json
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.dll
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/refint/AgendaRoom.Domain.dll
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/AgendaRoom.Domain.pdb
+/home/italo_dev/projetos/AgendaRoom/src/AgendaRoom.Domain/obj/Debug/net8.0/ref/AgendaRoom.Domain.dll

@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AgendaRoom.Migrations
+namespace AgendaRoom.Infrastructure.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
     partial class ApiDbContextModelSnapshot : ModelSnapshot
@@ -22,100 +22,103 @@ namespace AgendaRoom.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AgendaRoom.Entities.Reservation", b =>
+            modelBuilder.Entity("AgendaRoom.Domain.Entities.Reservation", b =>
                 {
-                    b.Property<int>("idReserva")
+                    b.Property<int>("ReservationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("idReserva"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ReservationId"));
 
-                    b.Property<DateTime>("dataReserva")
+                    b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("dataVencimento")
+                    b.Property<DateTime>("ReservationDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("idSala")
+                    b.Property<int>("RoomId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("idUsuario")
+                    b.Property<int>("Status")
                         .HasColumnType("integer");
 
-                    b.HasKey("idReserva");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
-                    b.HasIndex("idSala");
+                    b.HasKey("ReservationId");
 
-                    b.HasIndex("idUsuario");
+                    b.HasIndex("RoomId");
 
-                    b.ToTable("TB_Reservas");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TB_Reservations");
                 });
 
-            modelBuilder.Entity("AgendaRoom.Entities.Salas", b =>
+            modelBuilder.Entity("AgendaRoom.Domain.Entities.Room", b =>
                 {
-                    b.Property<int>("IdRoom")
+                    b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdRoom"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("RoomId"));
 
-                    b.Property<int>("capacidade")
+                    b.Property<int>("capacity")
                         .HasColumnType("integer");
 
-                    b.Property<string>("nome")
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("IdRoom");
+                    b.HasKey("RoomId");
 
-                    b.ToTable("TB_Salas");
+                    b.ToTable("TB_Rooms");
                 });
 
-            modelBuilder.Entity("AgendaRoom.Entities.Usuarios", b =>
+            modelBuilder.Entity("AgendaRoom.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("idUsuario")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("idUsuario"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("email")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("nome")
+                    b.Property<string>("hashPassword")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("senhaHash")
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("idUsuario");
+                    b.HasKey("UserId");
 
-                    b.ToTable("TB_Usuarios");
+                    b.ToTable("TB_User");
                 });
 
-            modelBuilder.Entity("AgendaRoom.Entities.Reservation", b =>
+            modelBuilder.Entity("AgendaRoom.Domain.Entities.Reservation", b =>
                 {
-                    b.HasOne("AgendaRoom.Entities.Salas", "Salas")
+                    b.HasOne("AgendaRoom.Domain.Entities.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("idSala")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AgendaRoom.Entities.Usuarios", "Usuarios")
+                    b.HasOne("AgendaRoom.Domain.Entities.User", "User")
                         .WithMany("Reservation")
-                        .HasForeignKey("idUsuario")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Salas");
+                    b.Navigation("Room");
 
-                    b.Navigation("Usuarios");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("AgendaRoom.Entities.Usuarios", b =>
+            modelBuilder.Entity("AgendaRoom.Domain.Entities.User", b =>
                 {
                     b.Navigation("Reservation");
                 });

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AgendaRoom.Domain.Entities;
-[Table("TB_Room")]
+[Table("TB_Rooms")]
 public class Room
 {
     public int RoomId { get; set; }
