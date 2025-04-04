@@ -1,0 +1,12 @@
+﻿version: '3.8'
+services:
+  postgres:
+    image: postgres:17.4-alpine
+    container_name: agendaroomdb
+    environment:
+      POSTGRES_DB: agendaroomdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: always

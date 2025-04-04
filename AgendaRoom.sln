@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EF9EC49E-60F9-4551-8303-9D19DD02442D}"
+	ProjectSection(SolutionItems) = preProject
+		src\docker-compose.yaml = src\docker-compose.yaml
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaRoom.API", "src\AgendaRoom.API\AgendaRoom.API.csproj", "{EBEB3E4B-7D41-45E7-A620-D9A520BEE420}"
 EndProject
